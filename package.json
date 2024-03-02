@@ -1,0 +1,44 @@
+{
+  "type": "module",
+  "scripts": {
+    "node": "node --env-file .env script.js",
+    "lint": "eslint . --ext .js,.ts",
+    "test-server-dev": "node --env-file .env tests/server.js"
+  },
+  "dependencies": {
+    "axios": "1.5.0",
+    "easy-airtable-api": "^0.0.1",
+    "parse-domain": "7.0.1",
+    "playwright": "1.38.0",
+    "prettier": "3.0.3",
+    "puppeteer": "21.2.1",
+    "zod": "3.22.2"
+  },
+  "devDependencies": {
+    "@typescript-eslint/eslint-plugin": "6.11.0",
+    "@typescript-eslint/parser": "6.11.0",
+    "eslint": "8.51.0",
+    "eslint-plugin-import": "2.29.0",
+    "eslint-plugin-jsdoc": "46.9.0",
+    "typescript": "5.2.2"
+  },
+  "prettier": {
+    "trailingComma": "es5",
+    "tabWidth": 2,
+    "useTabs": false,
+    "semi": true,
+    "singleQuote": false,
+    "proseWrap": "preserve",
+    "quoteProps": "as-needed",
+    "arrowParens": "always",
+    "bracketSpacing": true,
+    "endOfLine": "lf",
+    "htmlWhitespaceSensitivity": "css",
+    "insertPragma": false,
+    "singleAttributePerLine": false,
+    "bracketSameLine": false,
+    "jsxBracketSameLine": false,
+    "jsxSingleQuote": true,
+    "printWidth": 80
+  }
+}
