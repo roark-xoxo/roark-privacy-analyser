@@ -1,5 +1,5 @@
 /**
- * @typedef {import('./lib/scraper/types').ScraperArgsBody} ScraperArgsBody
+ * @typedef {import('./lib/scraper/types.js').ScraperArgsBody} ScraperArgsBody
  */
 
 import { logToFile } from "./lib/helpers/utils.js";
