@@ -1,4 +1,6 @@
 {
+  "name": "roark-privacy-analyser",
+	"version": "0.0.1",
   "type": "module",
   "scripts": {
     "node": "node --env-file .env script.js",
