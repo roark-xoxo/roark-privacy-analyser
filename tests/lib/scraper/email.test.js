@@ -1,5 +1,5 @@
 import { expect, test } from "vitest";
-import { getEmailAddressesFromHTML } from "../../../lib/scraper/email.js";
+import { getEmailAddressesFromHTML } from "../../../lib/email.js";
 
 test("Filters emails from HTML string", () => {
   const string =
