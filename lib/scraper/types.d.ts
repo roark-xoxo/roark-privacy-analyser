@@ -1,4 +1,12 @@
 import type {
+  Browser as PuppeteerBrowser,
+  Page as PagePuppeteer,
+} from "puppeteer";
+import type {
+  Browser as PlaywrightBrowser,
+  Page as PagePlaywright,
+} from "playwright";
+import type {
   CookieRecordFields,
   MultipleRecordLinks,
   SingleLineText,
@@ -148,6 +156,17 @@ export type CollectedData = {
     origin: string;
     hostname: string;
     baseUrl: string;
+  };
+  features: ScraperArgsFeaturesType | null;
+  browsers: {
+    puppeteer: {
+      browser: PuppeteerBrowser | null;
+      page: PagePuppeteer | null;
+    };
+    playwright: {
+      browser: PlaywrightBrowser | null;
+      page: PagePlaywright | null;
+    };
   };
 };
 
