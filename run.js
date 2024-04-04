@@ -2,7 +2,7 @@
  * @typedef {import('./lib/types.js').ScraperArgs} ScraperArgs
  */
 
-import { logToFile } from "./lib/utils.js";
+import { getErrorMessage, logToFile } from "./lib/utils.js";
 import { getScrapeResults } from "./lib/scrape.js";
 
 (async () => {
@@ -10,8 +10,8 @@ import { getScrapeResults } from "./lib/scrape.js";
     const data = await getScrapeResults(getScraperBody());
     console.log(JSON.stringify(data));
   } catch (error) {
-    logToFile("getScrapeResults ERROR: ", error);
-    console.log(JSON.stringify({ error: error }));
+    logToFile("getScrapeResults ERROR: ", getErrorMessage(error));
+    console.log(JSON.stringify({ error: getErrorMessage(error) }));
     process.exit(1);
   }
 })();
