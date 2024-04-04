@@ -125,7 +125,7 @@ export type CollectedData = {
     hostname: string;
     baseUrl: string;
   };
-  features: ScraperOptions;
+  options: ScraperOptions;
   browsers: {
     puppeteer: {
       browser: PuppeteerBrowser | null;
