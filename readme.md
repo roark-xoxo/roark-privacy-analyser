@@ -45,7 +45,7 @@ const options = {
 })();
 ```
 
-Also, have a look at the `example.js` file.
+Also, have a look at the [example.js](https://github.com/roark-xoxo/roark-privacy-analyser/blob/main/example.js) file.
 
 ### Child Process
 
