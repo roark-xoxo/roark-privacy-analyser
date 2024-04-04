@@ -1,26 +1,26 @@
 # Privacy Analyser
 
-A Node.js app that scrapes websites and checks for GDPR privacy violations.
+A Node.js application that scrapes websites and checks for GDPR privacy violations.
 
 You can try it here: [roark.at/app](https://roark.at/app)
 
 ## How to Use
 
-If you are running this for the first time, ensure all dependencies are installed and run `npm install`.
+If you are running this for the first time, ensure all dependencies are installed before running `npm install`.
 
 ### Command Line
 
-The easiest way to use it is to execute:
+The simplest way to use it is to execute:
 
 ```
 node app.js
 ```
 
-This will prompt you for the URL you want to analyse and the maximum number of pages you want analysed, then launch the process in the background and deliver the results in the terminal.
+This action will prompt you for the URL you wish to analyse and the maximum number of pages you want analysed. It will then launch the process in the background and deliver the results in the terminal.
 
 ### In Script
 
-You can execute this from within another script. All you need to do is import the `getScrapeResults` function and provide it with the correct arguments.
+You can execute this from within another script. All that is required is to import the `getScrapeResults` function and supply it with the correct arguments.
 
 The minimum requirement is as follows:
 
@@ -45,7 +45,7 @@ const options = {
 })();
 ```
 
-Also, check out the `example.js` file.
+Also, have a look at the `example.js` file.
 
 ### Child Process
 
@@ -53,7 +53,7 @@ You can execute the `child-process.js` file from another Bun or Node app via chi
 
 ## Playwright
 
-To properly run Playwright, `npm install` is often not sufficient. You also need to execute:
+To properly run Playwright, simply executing `npm install` is often insufficient. You should also execute:
 
 ```bash
 npx playwright install
