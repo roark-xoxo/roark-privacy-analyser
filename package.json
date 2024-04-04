@@ -5,7 +5,9 @@
   "scripts": {
     "node": "node --env-file .env script.js",
     "lint": "eslint . --ext .js,.ts",
-    "test": "vitest"
+    "test": "vitest",
+    "test-pp": "vitest puppeteer",
+    "test-pw": "vitest playwright"
   },
   "dependencies": {
     "parse-domain": "7.0.1",
