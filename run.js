@@ -1,9 +1,9 @@
 /**
- * @typedef {import('./lib/scraper/types.js').ScraperArgsBody} ScraperArgsBody
+ * @typedef {import('./lib/types.js').ScraperArgs} ScraperArgs
  */
 
-import { logToFile } from "./lib/helpers/utils.js";
-import { getScrapeResults } from "./lib/scraper/scrape.js";
+import { logToFile } from "./lib/utils.js";
+import { getScrapeResults } from "./lib/scrape.js";
 
 (async () => {
   try {
@@ -18,7 +18,7 @@ import { getScrapeResults } from "./lib/scraper/scrape.js";
 
 /**
  *
- * @returns {ScraperArgsBody} - All args to start scraper
+ * @returns {ScraperArgs} - All args to start scraper
  */
 function getScraperBody() {
   try {
