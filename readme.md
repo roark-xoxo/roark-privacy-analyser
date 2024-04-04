@@ -6,7 +6,19 @@ You can try it here: [roark.at/app](https://roark.at/app)
 
 ## How to Use
 
-If you are running this for the first time, ensure all dependencies are installed before running `npm install`.
+## Getting started
+
+If you are running this for the first time, ensure all dependencies are installed by running
+
+```bash
+npm install
+```
+
+If you plan to also use Playwright to analyse websites instead of the default Puppeteer you also need to run:
+
+```bash
+npx playwright install
+```
 
 ### Command Line
 
@@ -50,11 +62,3 @@ Also, have a look at the [example.js](https://github.com/roark-xoxo/roark-privac
 ### Child Process
 
 You can execute the `child-process.js` file from another Bun or Node app via child_process and listen for the results via IPC.
-
-## Playwright
-
-To properly run Playwright, simply executing `npm install` is often insufficient. You should also execute:
-
-```bash
-npx playwright install
-```
