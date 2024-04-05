@@ -10,11 +10,11 @@ import { getScrapeResults } from "./lib/scrape.js";
     const args = getScraperBodyFromProcessArgs();
     const data = await getScrapeResults(args);
     if (process && process.send) {
-      process.send({ data: JSON.stringify(data) });
+      process.send({ data: JSON.stringify(data), error: false });
     }
   } catch (error) {
     if (process && process.send) {
-      process.send({ error: getErrorMessage(error) });
+      process.send({ data: null, error: getErrorMessage(error) });
     }
     process.exit(1);
   }
