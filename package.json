@@ -1,6 +1,6 @@
 {
   "name": "roark-privacy-analyser",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "type": "module",
   "scripts": {
     "node": "node --env-file .env script.js",
@@ -10,6 +10,7 @@
     "test-pw": "vitest playwright"
   },
   "dependencies": {
+    "dotenv": "^16.4.5",
     "parse-domain": "7.0.1",
     "playwright": "1.38.0",
     "prettier": "3.0.3",

@@ -7,6 +7,7 @@ import readline from "readline";
  */
 
 (async () => {
+  process.env.LOG = "CONSOLE";
   try {
     const { url, pageLimit } = await getScraperBodyFromCommandLine();
     const data = await getScrapeResults(url, { pageLimit });
