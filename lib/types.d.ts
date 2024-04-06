@@ -28,20 +28,6 @@ export type Exact<T, Shape> = T & {
   [K in Exclude<keyof T, keyof Shape>]: never;
 };
 
-export interface AirtableAutomationRequestBody {
-  url?: string;
-  pageLimit?: string;
-  tableId?: string;
-  baseId?: string;
-  atId?: string;
-  fieldId?: string;
-  options?: GenerateTextOptions;
-  clickElement?: string;
-  sitemapsUrl?: string;
-  sitemapSearch?: boolean;
-  delay?: number;
-}
-
 export interface ScrapeResults {
   success: ResponseSuccess;
   status: ResponseStatus;
@@ -172,30 +158,24 @@ export type ScraperArgs = {
 };
 
 export type ScraperOptions = {
-  pageLimit: number | null;
-  log: boolean | null;
-  waitUntil: WaitUntilOptions;
   engine: ScrapeEngine;
-  privacyPage?: boolean | null;
-  emails?: boolean | null;
-  clickElement?: string | null;
-  sitemapUrl?: string | null;
-  sitemapSearch?: boolean | null;
-  delay?: number | null;
-  browser?: BrowserType;
-  headless?: boolean;
-  scroll?: boolean;
-  redirectError?: RedirectErrorOptions;
-  extendedSitePaths?: boolean;
-  queuePriority?: number;
+  pageLimit: number;
+  headless: boolean;
+  browser: BrowserType;
+  waitUntil: WaitUntilOptions;
+  scroll: boolean;
+  delay: number;
+  log: boolean;
+  redirectError: RedirectErrorOptions;
+  clickElement: string | null;
+  sitemapUrl: string | null;
+  sitemapSearch: boolean;
+  extendedSitePaths: boolean;
+  privacyPage: boolean;
+  emails: boolean;
 };
 
-export type ScrapeEngineOptions = "puppeteer" | "playwright";
-export type ScrapeEngine =
-  | "puppeteer"
-  | "playwright"
-  | "both"
-  | ScrapeEngineOptions[];
+export type ScrapeEngine = "puppeteer" | "playwright" | "both";
 
 export type WaitUntilOptions =
   | WaitUntilOptionsPlaywright
@@ -290,35 +270,6 @@ export type ResultProps = {
   resultsPlaywright: ScraperReturnObject;
 };
 
-export type SingleLineText = string | null;
-export type MultilineText = string | null;
-export type RichText = string;
-export type SingleSelect = string;
-export type MultipleSelects = string[];
-export type MultipleLookupValues = string[];
-export type Checkbox = boolean;
-export type AirtableUrl = string | null;
-export type AirtableEmail = string;
-export type AirtableInteger = number | null;
-export type Count = number;
-export type Duration = number;
-export type Formula = string | string[] | number;
-export type MultipleRecordLinks = string[];
-export type MultipleAttachments = Attachment[];
-export type FormulaSingleReturn = string | number;
-export type Rollup = string | number;
-export type AutoNumber = number;
-export type AirtableButton = {
-  label: string;
-  url: string;
-};
-export type LastModifiedTime = string;
-export type CreatedTime = string;
-export type DateTime = string;
-export type PhoneNumber = string;
-export type Currency = number;
-export type Percent = number;
-
 export interface Attachment {
   id: string;
   url: string;
@@ -400,138 +351,82 @@ export type AirtableRecord<FieldsType> = {
 export type UpdateRecords<FieldsType> = AirtableRecord<FieldsType>[];
 
 export type WebsiteRecordFields = {
-  Name?: Formula;
-  URL?: AirtableUrl;
-  redirectUrl?: AirtableUrl;
-  emails?: MultilineText;
-  siteDescription?: SingleLineText;
-  URLs?: MultipleRecordLinks;
-  Land?: SingleSelect;
-  status?: SingleSelect;
-  Branche?: MultipleSelects;
-  Kontaktperson?: SingleLineText;
+  URL?: string | null;
+  redirectUrl?: string | null;
+  emails?: string | null;
+  siteDescription?: string | null;
+  URLs?: string[];
+  status?: string;
   pagesVisited?: number;
-  technology?: MultipleRecordLinks;
-  technologyExternal?: MultipleRecordLinks;
-  siteTitle?: SingleLineText;
-  Cookies?: MultipleRecordLinks;
-  privacyPage?: MultilineText;
-  pagesVisitedString?: MultilineText;
-  cookiesFoundOn?: MultilineText;
-  urlsFoundOn?: MultilineText;
-  Telefon?: PhoneNumber;
-  Adresse?: MultilineText;
-  Öffnungszeiten?: MultilineText;
-  lastModified?: LastModifiedTime;
-  Kontaktstatus?: SingleSelect;
-  errorMessage?: MultilineText;
-  baseUrl?: SingleLineText;
-  Bundesland?: SingleSelect;
-  Partei?: SingleSelect;
-  "Beruflicher Hintergrund"?: SingleLineText;
-  Geburtsjahr?: number;
-  Source?: SingleSelect;
-  Created?: CreatedTime;
-  Parteiseite?: AirtableUrl;
-  "Status (URLs)"?: MultipleLookupValues;
-  "Count (Cookies)"?: Count;
-  Agentur?: MultipleRecordLinks;
-  "Beruflicher Hintergrund copy"?: MultipleSelects;
-  Kunden?: MultipleRecordLinks;
-  "Count (URLs)"?: Count;
-  scrapeTime?: Duration;
-  "Email Scrape"?: AirtableEmail;
-  Fachgebiet?: MultipleSelects;
-  "Status (from Technology)"?: MultipleLookupValues;
-  "Status (from Cookies)"?: MultipleLookupValues;
-  "Count Evil URLs"?: Count;
-  "Count Evil Technology"?: Count;
-  "Count Evil Cookies"?: Count;
-  "Evil Score"?: Formula;
+  technology?: string[];
+  technologyExternal?: string[];
+  siteTitle?: string | null;
+  Cookies?: string[];
+  privacyPage?: string | null;
+  errorMessage?: string | null;
+  baseUrl?: string | null;
+  Source?: string;
+  Created?: string;
+  "Status (URLs)"?: string[];
+  Agentur?: string[];
+  scrapeTime?: number;
+  "Email Scrape"?: string;
   pageLimit?: number;
-  atId?: Formula;
-  clickElement?: SingleLineText;
-  sitemapsUrl?: SingleLineText;
-  sitemapSearch?: Checkbox;
+  clickElement?: string | null;
+  sitemapsUrl?: string | null;
+  sitemapSearch?: boolean;
   "delay (ms)"?: number;
-  Scripts?: MultipleRecordLinks;
-  lastScrape?: DateTime;
-  Projekt?: MultipleSelects;
+  lastScrape?: string;
   scrapeStatus?: string | null;
 };
 
 export type CookieRecordFields = {
-  Name?: SingleLineText;
-  Websites?: MultipleRecordLinks;
-  "Count (Websites)"?: Count;
-  Service?: MultipleRecordLinks;
-  Status?: SingleSelect;
-  Kategorie?: MultipleSelects;
-  Summary?: MultilineText;
-  Description?: RichText;
-  summaryLen?: Formula;
-  descriptionLen?: Formula;
-  writeSummary?: Checkbox;
-  writeDescription?: Checkbox;
-  Slug?: SingleLineText;
-  "validFor (days)"?: SingleLineText;
-  sameParty?: Checkbox;
-  session?: Checkbox;
-  value?: SingleLineText;
-  Urteile?: MultipleRecordLinks;
-  DSGVO?: MultipleRecordLinks;
-  servicesJson?: MultipleLookupValues;
-  json?: Formula;
-  Error?: SingleLineText;
-  URLs?: MultipleRecordLinks;
-  lastModified?: LastModifiedTime;
-  "validFor (minutes)"?: AirtableInteger;
-  days?: Formula;
-  "Scripts (from Websites)"?: MultipleLookupValues;
-  "Projekt (from Websites)"?: MultipleLookupValues;
-  Klassifikation?: MultipleSelects;
-  sameAs?: MultipleRecordLinks;
-  atId?: Formula;
-  summaryStatus?: SingleSelect;
-  descriptionStatus?: SingleSelect;
-  "Count (Websites) Projekt Ärzte Wien"?: Count;
+  Name?: string | null;
+  Websites?: string[];
+  Service?: string[];
+  Status?: string;
+  "validFor (days)"?: string | null;
+  sameParty?: boolean;
+  session?: boolean;
+  value?: string | null;
+  Error?: string | null;
+  URLs?: string[];
+  "validFor (minutes)"?: number | null;
+  "Scripts (from Websites)"?: string[];
+  "Projekt (from Websites)"?: string[];
+  sameAs?: string[];
+  summaryStatus?: string;
+  descriptionStatus?: string;
 };
 
 export type UrlsRecordFields = {
-  Name?: SingleLineText;
-  Status?: MultipleSelects;
-  Webseiten?: MultipleRecordLinks;
-  webseitenCount?: Count;
-  Service?: MultipleRecordLinks;
-  description?: MultilineText;
-  category?: MultipleSelects;
-  summary?: MultilineText;
-  descriptionLen?: Formula;
-  summaryLen?: Formula;
-  publishStatus?: SingleSelect;
-  Subservice?: MultipleRecordLinks;
-  slug?: SingleLineText;
-  summaryInput?: SingleLineText;
-  descriptionInput?: SingleLineText;
-  json?: Formula;
-  server?: SingleLineText;
-  setCookie?: SingleLineText;
-  setCookieAlt?: SingleLineText;
-  poweredBy?: SingleLineText;
-  via?: SingleLineText;
-  akamaiCacheStatus?: SingleLineText;
-  xCache?: SingleLineText;
-  xCacheAlt?: SingleLineText;
-  xAmzCfPop?: SingleLineText;
-  xAmzRid?: SingleLineText;
-  errorMessage?: SingleLineText;
-  cookies?: MultipleRecordLinks;
-  servicesJson?: MultipleLookupValues;
-  cookiesJson?: MultipleLookupValues;
-  scripts?: MultipleRecordLinks;
-  lastModified?: LastModifiedTime;
-  technologie?: MultipleRecordLinks;
-  projekt?: MultipleLookupValues;
+  Name?: string | null;
+  Status?: string[];
+  Webseiten?: string[];
+  Service?: string[];
+  description?: string | null;
+  category?: string[];
+  summary?: string | null;
+  publishStatus?: string;
+  Subservice?: string[];
+  summaryInput?: string | null;
+  descriptionInput?: string | null;
+  server?: string | null;
+  setCookie?: string | null;
+  setCookieAlt?: string | null;
+  poweredBy?: string | null;
+  via?: string | null;
+  akamaiCacheStatus?: string | null;
+  xCache?: string | null;
+  xCacheAlt?: string | null;
+  xAmzCfPop?: string | null;
+  xAmzRid?: string | null;
+  errorMessage?: string | null;
+  cookies?: string[];
+  cookiesJson?: string[];
+  scripts?: string[];
+  technologie?: string[];
+  projekt?: string[];
 };
 
 export type UrlsFound = {
@@ -568,9 +463,9 @@ export type ScriptsRecord = {
 };
 
 export type ScriptsRecordFields = {
-  url: SingleLineText;
-  scriptname: SingleLineText;
-  hostname: MultipleRecordLinks;
-  pathname: SingleLineText;
-  server?: MultipleRecordLinks;
+  url: string | null;
+  scriptname: string | null;
+  hostname: string[];
+  pathname: string | null;
+  server?: string[];
 };

@@ -1,4 +1,4 @@
-import { getErrorMessage, logToFile } from "./lib/utils.js";
+import { getErrorMessage } from "./lib/utils.js";
 import { getScrapeResults } from "./lib/scrape.js";
 import readline from "readline";
 
@@ -8,19 +8,11 @@ import readline from "readline";
 
 (async () => {
   try {
-    const { url, pageLimit } = await getScraperBody();
-    /** @type {ScraperOptions} */
-    const options = {
-      engine: "puppeteer",
-      pageLimit: pageLimit,
-      log: false,
-      waitUntil: "load",
-    };
-    const data = await getScrapeResults({ url, options });
-    console.log(data);
+    const { url, pageLimit } = await getScraperBodyFromCommandLine();
+    const data = await getScrapeResults(url, { pageLimit });
+    console.log(data.results);
   } catch (error) {
-    logToFile("getScrapeResults ERROR: ", getErrorMessage(error));
-    console.log({ error: getErrorMessage(error) });
+    console.error({ error: getErrorMessage(error) });
     process.exit(1);
   }
 })();
@@ -29,25 +21,19 @@ import readline from "readline";
  *
  * @returns {Promise<{url:string,pageLimit:number}>} - All args to start scraper
  */
-async function getScraperBody() {
+async function getScraperBodyFromCommandLine() {
   return new Promise((resolve, reject) => {
     const rl = readline.createInterface({
       input: process.stdin,
       output: process.stdout,
     });
-
     rl.question("URL to analyse: ", (url) => {
       rl.question("Max pages to visit (default 5): ", (maxPages) => {
         let pageLimit = maxPages.trim() ? parseInt(maxPages, 10) : 5;
         pageLimit = isNaN(pageLimit) || pageLimit < 1 ? 5 : pageLimit;
-
         rl.close();
-
-        if (!url) {
-          reject(new Error("URL is required"));
-        } else {
-          resolve({ url, pageLimit });
-        }
+        if (!url) reject(new Error("URL is required"));
+        else resolve({ url, pageLimit });
       });
     });
   });

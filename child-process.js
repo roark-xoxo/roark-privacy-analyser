@@ -7,8 +7,8 @@ import { getScrapeResults } from "./lib/scrape.js";
 
 (async () => {
   try {
-    const args = getScraperBodyFromProcessArgs();
-    const data = await getScrapeResults(args);
+    const { url, options } = getScraperBodyFromProcessArgs();
+    const data = await getScrapeResults(url, options);
     if (process && process.send) {
       process.send({ data: JSON.stringify(data), error: false });
     }
