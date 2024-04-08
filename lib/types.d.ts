@@ -57,18 +57,6 @@ export interface ErrorMessage {
   message: string;
 }
 
-export type GenerateTextOptions = {
-  baseQuestion: string;
-  objectName: string;
-  answerSpecifier: string;
-  instruction: string;
-};
-
-export type TextAnswerRespone = {
-  status: "success";
-  message: string;
-};
-
 export type ScraperReturnObject = {
   results: ScrapeResults;
   collectedData: CollectedData;
