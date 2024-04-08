@@ -33,7 +33,7 @@ export interface ScrapeResults {
   status: number;
   emailAddresses: string[];
   internalUrls: string[];
-  externalUrls: UrlsRecordFields[];
+  externalUrls: ResponseHeaders[];
   externalScripts: ScriptsRecordFields[] | [];
   cookies: CookiesArray;
   pagesVisited: number;
@@ -50,23 +50,6 @@ export interface ScrapeResults {
     urls: string[] | [] | null;
     cookies: string[] | [] | null;
   };
-}
-
-export type UrlsArray = [string, ResponseHeaders][] | [];
-
-export interface ResponseHeaders {
-  server?: string;
-  setCookie?: string;
-  setCookieAlt?: string;
-  poweredBy?: string;
-  via?: string;
-  akamaiCacheStatus?: string;
-  xCache?: string;
-  xCacheAlt?: string;
-  xAmzCfPop?: string;
-  xAmzRid?: string;
-  firstAddedOnPageNumber: number;
-  foundOnUrls: string[];
 }
 
 export interface ErrorMessage {
@@ -137,7 +120,6 @@ export type InternalLinksStatus = {
   status?: number;
 };
 
-export type ExternalLinksMap = Map<string, ResponseHeaders>;
 export type TechStack = Set<string>;
 export type EmailAddresses = Set<string>;
 
@@ -193,12 +175,6 @@ export type WaitUntilOptionsPlaywright =
 
 export type RedirectErrorOptions = "domain" | "subdomain" | null;
 
-export type UrlsRecord = {
-  id: string;
-  createdTime: string;
-  fields: UrlsRecordFields;
-};
-
 export interface ErrorResponse {
   success?: boolean;
   status?: number;
@@ -222,30 +198,23 @@ export type ResultProps = {
   resultsPlaywright: ScraperReturnObject;
 };
 
-export type UrlsRecordFields = {
-  Name?: string | null;
-  description?: string | null;
-  category?: string[];
-  summary?: string | null;
-  summaryInput?: string | null;
-  descriptionInput?: string | null;
-  server?: string | null;
-  setCookie?: string | null;
-  setCookieAlt?: string | null;
-  poweredBy?: string | null;
-  via?: string | null;
-  akamaiCacheStatus?: string | null;
-  xCache?: string | null;
-  xCacheAlt?: string | null;
-  xAmzCfPop?: string | null;
-  xAmzRid?: string | null;
-  errorMessage?: string | null;
-  cookies?: string[];
-  cookiesJson?: string[];
-  scripts?: string[];
-  technologie?: string[];
-  projekt?: string[];
-};
+export type ExternalLinksMap = Map<string, ResponseHeaders>;
+
+export interface ResponseHeaders {
+  hostname?: string;
+  server?: string;
+  setCookie?: string;
+  setCookieAlt?: string;
+  poweredBy?: string;
+  via?: string;
+  akamaiCacheStatus?: string;
+  xCache?: string;
+  xCacheAlt?: string;
+  xAmzCfPop?: string;
+  xAmzRid?: string;
+  firstAddedOnPageNumber: number;
+  foundOnUrls: string[];
+}
 
 export type ScriptsRecordFields = {
   url: string | null;
