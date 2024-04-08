@@ -89,7 +89,6 @@ export type TextAnswerRespone = {
 export type ScraperReturnObject = {
   results: ScrapeResults;
   collectedData: CollectedData;
-  websiteData: WebsiteData;
 };
 
 export type CollectedData = {
@@ -218,12 +217,6 @@ export type CookieRecord = {
   fields: CookieRecordFields;
 };
 
-export interface WebsiteData {
-  cookies: BoxesContent;
-  urls: BoxesContent;
-  pagesVisited: number;
-}
-
 type ResponseSuccess = boolean;
 type ResponseStatus = number;
 export type ResponseMessage = string | null;
@@ -256,11 +249,6 @@ export interface SuccessResponse {
   status?: number;
   message?: string | null;
   data?: unknown;
-}
-
-export interface SuccessResponseWebsiteData
-  extends Omit<SuccessResponse, "data"> {
-  data?: WebsiteData | null;
 }
 
 export type RequestOrResponseHeaders = Record<string, string>;
