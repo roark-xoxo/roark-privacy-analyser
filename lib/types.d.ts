@@ -7,7 +7,7 @@ import type {
   Page as PagePlaywright,
 } from "playwright";
 
-export interface Cookie {
+export type Cookie = {
   name: string;
   value: string;
   domain: string;
@@ -19,7 +19,7 @@ export interface Cookie {
   validForMinutes: number | null;
   firstAddedOnPageNumber: number;
   foundOnUrls: string[];
-}
+};
 
 export type CookiesArray = Cookie[];
 export type CookiesMap = Map<string, Cookie>;
@@ -29,8 +29,8 @@ export type Exact<T, Shape> = T & {
 };
 
 export interface ScrapeResults {
-  success: ResponseSuccess;
-  status: ResponseStatus;
+  success: boolean;
+  status: number;
   emailAddresses: string[];
   internalUrls: string[];
   externalUrls: UrlsRecordFields[];
@@ -193,46 +193,10 @@ export type WaitUntilOptionsPlaywright =
 
 export type RedirectErrorOptions = "domain" | "subdomain" | null;
 
-export type ExternalUrlsAirtableRecords = ExternalUrlsAirtableRecord[] | null;
-
-type ExternalUrlsAirtableRecord = {
-  fields: UrlsRecordFields;
-};
-
 export type UrlsRecord = {
   id: string;
   createdTime: string;
   fields: UrlsRecordFields;
-};
-
-export type CookieAirtableRecords = CookieAirtableRecord[];
-
-type CookieAirtableRecord = {
-  fields: CookieRecordFields;
-};
-
-export type CookieRecord = {
-  id: string;
-  createdTime: string;
-  fields: CookieRecordFields;
-};
-
-type ResponseSuccess = boolean;
-type ResponseStatus = number;
-export type ResponseMessage = string | null;
-
-export type BoxesContent = BoxContent[];
-
-export type BoxContent = {
-  title: string;
-  items?: BoxContentItems;
-};
-
-export type BoxContentItems = BoxContentItem[];
-
-export type BoxContentItem = {
-  label: string;
-  value: string | null;
 };
 
 export interface ErrorResponse {
@@ -258,145 +222,11 @@ export type ResultProps = {
   resultsPlaywright: ScraperReturnObject;
 };
 
-export interface Attachment {
-  id: string;
-  url: string;
-  filename: string;
-  size: number;
-  type: string;
-  thumbnails?: {
-    small: Thumbnail;
-    large: Thumbnail;
-    full: Thumbnail;
-  };
-}
-
-export interface Thumbnail {
-  url: string;
-  width: number;
-  height: number;
-}
-
-export type UpserptRecords = {
-  records: {
-    id: string;
-    createdTime: string;
-    fields: unknown;
-  }[];
-  updatedRecords: string[];
-  createdRecords: string[];
-};
-
-export interface UpdateRecordsBody<FieldsType> {
-  typecast: boolean;
-  records: UpdateRecords<FieldsType>;
-}
-export interface UpdateRecordsBodyUpsert<FieldsType>
-  extends UpdateRecordsBody<FieldsType> {
-  performUpsert: { fieldsToMergeOn: FieldsToMergeOn };
-}
-
-export type BaseId = string;
-export type TableId = string;
-
-export type FieldsToMergeOn = string[];
-
-export type ApiRequest = {
-  method: "GET" | "POST" | "PUT" | "DELETE" | "PATCH";
-  url: string;
-  body?: RequestBody;
-};
-
-export interface RequestMethod {
-  url: string;
-  body?: RequestBody;
-}
-
-export type RequestBody = unknown;
-
-export interface AirtableRecordRequest {
-  baseId: string;
-  tableId: string;
-  atId?: string;
-  body: RequestBody;
-}
-
-export interface UpdateAirtableRecordRequest {
-  atId?: string;
-  baseId: string;
-  tableId: string;
-  body?: RequestBody;
-}
-
-export interface RequestBodyWebsiteInfos {
-  fields: unknown;
-}
-
-export type AirtableRecord<FieldsType> = {
-  fields: FieldsType;
-};
-
-export type UpdateRecords<FieldsType> = AirtableRecord<FieldsType>[];
-
-export type WebsiteRecordFields = {
-  URL?: string | null;
-  redirectUrl?: string | null;
-  emails?: string | null;
-  siteDescription?: string | null;
-  URLs?: string[];
-  status?: string;
-  pagesVisited?: number;
-  technology?: string[];
-  technologyExternal?: string[];
-  siteTitle?: string | null;
-  Cookies?: string[];
-  privacyPage?: string | null;
-  errorMessage?: string | null;
-  baseUrl?: string | null;
-  Source?: string;
-  Created?: string;
-  "Status (URLs)"?: string[];
-  Agentur?: string[];
-  scrapeTime?: number;
-  "Email Scrape"?: string;
-  pageLimit?: number;
-  clickElement?: string | null;
-  sitemapsUrl?: string | null;
-  sitemapSearch?: boolean;
-  "delay (ms)"?: number;
-  lastScrape?: string;
-  scrapeStatus?: string | null;
-};
-
-export type CookieRecordFields = {
-  Name?: string | null;
-  Websites?: string[];
-  Service?: string[];
-  Status?: string;
-  "validFor (days)"?: string | null;
-  sameParty?: boolean;
-  session?: boolean;
-  value?: string | null;
-  Error?: string | null;
-  URLs?: string[];
-  "validFor (minutes)"?: number | null;
-  "Scripts (from Websites)"?: string[];
-  "Projekt (from Websites)"?: string[];
-  sameAs?: string[];
-  summaryStatus?: string;
-  descriptionStatus?: string;
-};
-
 export type UrlsRecordFields = {
   Name?: string | null;
-  Status?: string[];
-  Webseiten?: string[];
-  Service?: string[];
   description?: string | null;
   category?: string[];
   summary?: string | null;
-  publishStatus?: string;
-  Subservice?: string[];
   summaryInput?: string | null;
   descriptionInput?: string | null;
   server?: string | null;
@@ -415,39 +245,6 @@ export type UrlsRecordFields = {
   scripts?: string[];
   technologie?: string[];
   projekt?: string[];
-};
-
-export type UrlsFound = {
-  name: string;
-  foundOnUrls: string[];
-}[];
-
-export type ParsedItem = {
-  name?: string;
-  urls?: string[];
-};
-
-export type AirtableResponse<T> = {
-  records: T[];
-  error?: { message: string };
-  offset?: string;
-};
-
-export type UpdateStatusArgs = {
-  body: ScraperArgs;
-  status: string;
-  statusMessage?: string;
-  errorMessage?: string;
-};
-
-type ScriptsAirtableRecord = {
-  fields: ScriptsRecordFields;
-};
-
-export type ScriptsRecord = {
-  id: string;
-  createdTime: string;
-  fields: ScriptsRecordFields;
 };
 
 export type ScriptsRecordFields = {
