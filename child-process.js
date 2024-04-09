@@ -2,7 +2,7 @@
  * @typedef {import('./lib/types.js').ScraperArgs} ScraperArgs
  */
 
-import { getErrorMessage } from "./lib/utils.js";
+import { getErrorMessage, writeResultsToFile } from "./lib/utils.js";
 import { getScrapeResults } from "./lib/scrape.js";
 
 (async () => {
@@ -14,7 +14,9 @@ import { getScrapeResults } from "./lib/scrape.js";
       throw new Error("Error geting results.");
     }
     if (process && process.send) {
-      process.send({ data: JSON.stringify(data.results), error: false });
+      const filename = `scrape_result_${Math.random()}.json`;
+      process.send({ filename, error: false });
+      writeResultsToFile(JSON.stringify(data.results), filename);
     } else {
       throw new Error("No process method found.");
     }
