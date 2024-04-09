@@ -14,7 +14,9 @@ import { getScrapeResults } from "./lib/scrape.js";
       throw new Error("Error geting results.");
     }
     if (process && process.send) {
-      process.send({ data: data.results, error: false });
+      process.send({ data: JSON.stringify(data.results), error: false });
+    } else {
+      throw new Error("No process method found.");
     }
   } catch (error) {
     if (process && process.send) {
