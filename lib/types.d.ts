@@ -31,6 +31,12 @@ export type Exact<T, Shape> = T & {
 export interface ScrapeResults {
   success: boolean;
   status: number;
+  url: {
+    href: string;
+    origin: string;
+    hostname: string;
+    baseUrl: string;
+  };
   emailAddresses: string[];
   internalUrls: string[];
   externalUrls: ResponseHeaders[];

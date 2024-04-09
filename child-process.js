@@ -10,8 +10,11 @@ import { getScrapeResults } from "./lib/scrape.js";
     const { url, options } = getScraperBodyFromProcessArgs();
     if (options.log === true) process.env.LOG = "IPC_MESSAGE";
     const data = await getScrapeResults(url, options);
+    if (!data.results) {
+      throw new Error("Error geting results.");
+    }
     if (process && process.send) {
-      process.send({ data: JSON.stringify(data), error: false });
+      process.send({ data: data.results, error: false });
     }
   } catch (error) {
     if (process && process.send) {
