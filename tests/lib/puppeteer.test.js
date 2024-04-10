@@ -1,5 +1,5 @@
 import { expect, test } from "vitest";
-import { getErrorMessage, logToFile } from "../../lib/utils.js";
+import { getErrorMessage } from "../../lib/utils.js";
 import { getScrapeResults } from "../../lib/scrape.js";
 
 /**
@@ -10,10 +10,9 @@ import { getScrapeResults } from "../../lib/scrape.js";
 test("Run Scraper with Puppeteer", async () => {
   try {
     const data = await getScrapeResults(getScraperBody());
-    logToFile("results:", data.results);
+    console.log("results:", data.results);
   } catch (error) {
     console.log(getErrorMessage(error));
-    logToFile("getScrapeResults ERROR: ", getErrorMessage(error));
     console.log(JSON.stringify({ error: error }));
   }
   expect(true).toBe(true);
@@ -41,7 +40,7 @@ function getScraperBody() {
       options,
     };
   } catch (error) {
-    logToFile("getScraperBody", error);
+    console.log("getScraperBody", error);
     throw error;
   }
 }
