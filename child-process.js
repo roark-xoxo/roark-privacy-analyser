@@ -8,7 +8,7 @@ import { getScrapeResults } from "./lib/scrape.js";
 (async () => {
   try {
     const { url, options } = getScraperBodyFromProcessArgs();
-    if (options.log === true) process.env.LOG = "IPC_MESSAGE";
+    if (options?.log === true) process.env.LOG = "IPC_MESSAGE";
     const data = await getScrapeResults(url, options);
     if (!data.results) {
       throw new Error("Error geting results.");

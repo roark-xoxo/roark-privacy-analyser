@@ -129,7 +129,7 @@ type ScriptsType = {
 
 export type ScraperArgs = {
   url: string;
-  options: ScraperOptions;
+  options?: ScraperOptions;
 };
 
 export type ScraperOptions = {
