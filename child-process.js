@@ -25,6 +25,8 @@ import { getScrapeResults } from "./lib/scrape.js";
       process.send({ data: null, error: getErrorMessage(error) });
     }
     process.exit(1);
+  } finally {
+    process.exit(0);
   }
 })();
 
