@@ -15,7 +15,7 @@ import { getScrapeResults } from "./lib/scrape.js";
     }
     if (process && process.send) {
       const filename = `scrape-result-${crypto.randomUUID()}.json`;
-      writeResultsToFile(JSON.stringify(data.results), filename);
+      await writeResultsToFile(JSON.stringify(data.results), filename);
       process.send({ filename, error: false });
     } else {
       throw new Error("No process method found.");
