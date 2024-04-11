@@ -1,13 +1,14 @@
 {
   "name": "roark-privacy-analyser",
-  "version": "0.1.2",
+  "version": "0.1.3",
   "type": "module",
   "scripts": {
     "node": "node --env-file .env script.js",
     "lint": "eslint . --ext .js,.ts",
     "test": "vitest",
     "test-pp": "vitest puppeteer",
-    "test-pw": "vitest playwright"
+    "test-pw": "vitest playwright",
+    "test-domains": "vitest domains"
   },
   "dependencies": {
     "dotenv": "^16.4.5",
