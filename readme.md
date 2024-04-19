@@ -6,7 +6,7 @@ You can try it here: [roark.at/app](https://roark.at/app)
 
 ## How to Use
 
-## Getting started
+### Getting started
 
 If you are running this for the first time, ensure all dependencies are installed by running
 
@@ -32,7 +32,7 @@ This action will prompt you for the URL you wish to analyse and the maximum numb
 
 ### In Script
 
-You can execute this from within another script. All that is required is to import the `getScrapeResults` function and supply it with the correct arguments.
+You can execute this from within another script. All that is required is to import the `getScrapeResults` function and pass it the arguments.
 
 The minimum requirement is as follows:
 
