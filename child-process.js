@@ -2,7 +2,11 @@
  * @typedef {import('./lib/types.js').ScraperArgs} ScraperArgs
  */
 
-import { getErrorMessage, writeResultsToFile } from "./lib/utils.js";
+import {
+  formatDate,
+  getErrorMessage,
+  writeResultsToFile,
+} from "./lib/utils.js";
 import { getScrapeResults } from "./lib/scrape.js";
 
 (async () => {
@@ -14,7 +18,9 @@ import { getScrapeResults } from "./lib/scrape.js";
       throw new Error("Error geting results.");
     }
     if (process && process.send) {
-      const filename = `scrape-result-${crypto.randomUUID()}.json`;
+      const filename = `scrape-result-${formatDate(
+        new Date()
+      )}-${crypto.randomUUID()}.json`;
       await writeResultsToFile(JSON.stringify(data.results), filename);
       process.send({ filename, error: false });
     } else {
